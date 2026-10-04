@@ -4,3 +4,8 @@ node_modules
 .env.local
 next-env.d.ts
 *.tsbuildinfo
+.supabase_token
+.supabase_db_password
+
+.vercel
+supabase/.temp/
