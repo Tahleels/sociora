@@ -4,7 +4,7 @@ import type { Domain, Experience, Intent, QuestionClassification, UserType } fro
 const DOMAIN_RULES: Record<Domain, RegExp> = {
   Technology: /\b(code|coding|software|developer|programming|dsa|algorithm|react|python|javascript|app|tech|engineer(ing)?|interview prep|leetcode|ai|backend|frontend)\b/,
   Psychology: /\b(anxi\w*|stress\w*|scared|afraid|fear|depress\w*|burn\s?out|confidence|overthink\w*|mental|lonely|sad|criticiz\w*|toxic|self.?esteem|cope|coping|worried|panic)\b/,
-  Career: /\b(job|jobs|career|placement\w*|intern\w*|resume|cv|hiring|interview\w*|promotion|salary|manager|boss|workplace|office|graduat\w*|offer|layoff|switch)\b/,
+  Career: /\b(job|jobs|career|placement\w*|placed|intern\w*|resume|cv|hiring|interview\w*|promotion|salary|manager|boss|workplace|office|graduat\w*|offer|layoff|switch)\b/,
   Education: /\b(college|university|exam\w*|study|studying|degree|school|course|teacher|student|syllabus|scholarship|masters|gpa)\b/,
   Finance: /\b(money|invest\w*|salary|loan|tax|budget|saving\w*|stock\w*|mutual fund|debt|finance|retire\w*)\b/,
   Business: /\b(startup|business|founder|saas|customers?|revenue|funding|bootstrap\w*|entrepreneur\w*|product|company)\b/,
@@ -15,8 +15,8 @@ const DOMAIN_RULES: Record<Domain, RegExp> = {
 };
 
 const EXP_RULES: [Experience, RegExp][] = [
-  ["College Life", /\b(college|university|campus|final.?year|semester|hostel|placement\w*)\b/],
-  ["Job Search", /\b(job|jobs|placement\w*|resume|cv|hiring|apply|applying|graduat\w*|unemploy\w*|offer)\b/],
+  ["College Life", /\b(college|university|campus|final.?year|semester|hostel|placement\w*|placed)\b/],
+  ["Job Search", /\b(job|jobs|placement\w*|placed|resume|cv|hiring|apply|applying|graduat\w*|unemploy\w*|offer)\b/],
   ["Interviews", /\b(interview\w*|leetcode|dsa|mock)\b/],
   ["Software Development", /\b(software|code|coding|developer|programming|backend|frontend|dsa)\b/],
   ["Starting a Business", /\b(startup|founder|bootstrap\w*|saas|entrepreneur\w*|my business)\b/],
@@ -33,7 +33,7 @@ const EXP_RULES: [Experience, RegExp][] = [
 ];
 
 const CONTEXT_RULES: [string, RegExp][] = [
-  ["College", /\b(college|university|campus|student|final.?year|semester|hostel|placement\w*)\b/],
+  ["College", /\b(college|university|campus|student|final.?year|semester|hostel|placement\w*|placed)\b/],
   ["Workplace", /\b(manager|boss|office|workplace|coworker|colleague|team|company|promotion|at work)\b/],
   ["Job Search", /\b(interview\w*|resume|cv|apply|applying|hiring|job search|offer)\b/],
   ["Startup", /\b(startup|founder|bootstrap\w*|saas|funding)\b/],
@@ -69,8 +69,8 @@ function targetsOf(t: string, domain: Domain, context: string): UserType[] {
 function tagsOf(t: string, domain: Domain, context: string, exps: Experience[]): string[] {
   const tags: string[] = [];
   const add = (tag: string, re: RegExp) => re.test(t) && tags.push(tag);
-  add("career anxiety", /\b(scared|anxi\w*|worried|afraid)\b.*\b(job|career|placement\w*|graduat\w*)\b|\b(job|career|placement\w*|graduat\w*)\b.*\b(scared|anxi\w*|worried|afraid)\b/);
-  add("placements", /\bplacement\w*|final.?year|graduat\w*|get a job\b/);
+  add("career anxiety", /\b(scared|anxi\w*|worried|afraid)\b.*\b(job|career|placement\w*|placed|graduat\w*)\b|\b(job|career|placement\w*|placed|graduat\w*)\b.*\b(scared|anxi\w*|worried|afraid)\b/);
+  add("placements", /\bplacement\w*|placed|final.?year|graduat\w*|get a job\b/);
   add("workplace conflict", /\b(manager|boss|coworker|colleague)\b.*\b(criticiz\w*|yell\w*|toxic|rude|blame\w*|micromanag\w*)\b|\b(criticiz\w*|toxic)\b.*\b(manager|boss)\b/);
   add("manager", /\b(manager|boss)\b/);
   add("interview prep", /\b(prepare|prep|preparing|crack)\b.*\binterview\w*\b|\binterview prep\b/);
@@ -96,7 +96,7 @@ export function fallbackClassify(text: string): QuestionClassification {
 
   // Heuristic: emotional language about work/career => lead with the topic the user is asking about.
   const emotional = /\b(scared|anxi\w*|afraid|worried|stress\w*|criticiz\w*)\b/.test(t);
-  const mentionsJob = /\b(job|career|placement\w*|graduat\w*)\b/.test(t);
+  const mentionsJob = /\b(job|career|placement\w*|placed|graduat\w*)\b/.test(t);
   const mentionsManager = /\b(manager|boss|coworker|colleague)\b/.test(t);
   if (emotional && mentionsJob) { domain = "Career"; secondaryDomain = "Psychology"; }
   else if (emotional && mentionsManager) { domain = "Psychology"; secondaryDomain = "Career"; }
