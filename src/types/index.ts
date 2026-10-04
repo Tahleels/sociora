@@ -51,6 +51,11 @@ export interface Post {
   tags: string[];
   createdAt: string;          // ISO
   answerCount?: number;
+  // Trajectory routing (additive, optional): lets a resolved question be
+  // surfaced to someone standing where its asker once stood.
+  status?: "open" | "resolved";
+  resolvedAt?: string;        // ISO — when the asker reported what happened
+  outcome?: string;           // the asker's own "here's what happened" closure
 }
 
 export interface Answer {
@@ -69,6 +74,22 @@ export interface ExperienceMatch {
   matchedExperiences?: Experience[];
 }
 
+// A resolved question whose asker has since reported what happened — routed
+// forward across time rather than across people. "4 people stood exactly
+// here. 3 of them are past it now."
+export interface TrajectoryMatch {
+  postId: string;
+  anonymousId: string;
+  content: string;            // the original question, as asked
+  domain: Domain;
+  matchedExperiences: Experience[];
+  askedAt: string;            // ISO
+  resolvedAt: string;         // ISO
+  monthsAgo: number;          // how long ago it resolved
+  outcome: string;            // "here's what I'd tell the version of me who wrote that"
+  score: number;              // 0..1
+}
+
 // ---- API contracts (request -> response) ----
 // POST /api/classify          {question}                          -> QuestionClassification
 // POST /api/match             {classification, excludeProfileId?} -> {matches: ExperienceMatch[]}
@@ -79,3 +100,5 @@ export interface ExperienceMatch {
 // GET  /api/posts/:id         -> {post: Post, answers: Answer[]}
 // POST /api/posts/:id/answers {anonymousId, content}              -> Answer
 // GET  /api/search?q=         -> {classification, posts: Post[], people: ExperienceMatch[]}
+// POST /api/trajectory        {classification, excludePostId?}    -> {matches: TrajectoryMatch[]}
+// POST /api/posts/:id/resolve {outcome}                           -> Post (marks it resolved)
