@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-label="Question to anonymous discussion routing flow">
+  <rect width="1200" height="360" rx="20" fill="#faf7f2"/>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#c2410c"/>
+    </marker>
+  </defs>
+  <g font-family="Arial, sans-serif" text-anchor="middle">
+    <g>
+      <rect x="30" y="110" width="200" height="130" rx="16" fill="#fff" stroke="#14110f" stroke-width="2"/>
+      <text x="130" y="150" font-size="14" fill="#c2410c" font-weight="700">1 · QUESTION</text>
+      <text x="130" y="180" font-size="15" fill="#14110f">"I'm scared I won't</text>
+      <text x="130" y="200" font-size="15" fill="#14110f">get a job after</text>
+      <text x="130" y="220" font-size="15" fill="#14110f">graduation..."</text>
+    </g>
+    <path d="M232 175 H290" stroke="#c2410c" stroke-width="3" marker-end="url(#a)"/>
+    <g>
+      <rect x="295" y="90" width="260" height="170" rx="16" fill="#14110f"/>
+      <text x="425" y="130" font-size="14" fill="#fb923c" font-weight="700">2 · AI EXPERIENCE ROUTER</text>
+      <text x="425" y="165" font-size="15" fill="#faf7f2">Domain · Context · Intent</text>
+      <text x="425" y="190" font-size="15" fill="#faf7f2">Target user types</text>
+      <text x="425" y="215" font-size="15" fill="#faf7f2">Required experiences</text>
+      <text x="425" y="243" font-size="13" fill="#fdba74">Gemini / OpenRouter + keyword fallback</text>
+    </g>
+    <path d="M557 175 H615" stroke="#c2410c" stroke-width="3" marker-end="url(#a)"/>
+    <g>
+      <rect x="620" y="90" width="260" height="170" rx="16" fill="#fff" stroke="#14110f" stroke-width="2"/>
+      <text x="750" y="130" font-size="14" fill="#c2410c" font-weight="700">3 · WEIGHTED MATCHING</text>
+      <text x="750" y="165" font-size="15" fill="#14110f">Domain match 40%</text>
+      <text x="750" y="190" font-size="15" fill="#14110f">Experience match 30%</text>
+      <text x="750" y="215" font-size="15" fill="#14110f">Context match 20%</text>
+      <text x="750" y="240" font-size="15" fill="#14110f">User type fit 10%</text>
+    </g>
+    <path d="M882 175 H940" stroke="#c2410c" stroke-width="3" marker-end="url(#a)"/>
+    <g>
+      <rect x="945" y="110" width="225" height="130" rx="16" fill="url(#g)"/>
+      <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c2410c"/><stop offset="1" stop-color="#7c2d12"/></linearGradient>
+      <text x="1057" y="150" font-size="14" fill="#fed7aa" font-weight="700">4 · ANONYMOUS</text>
+      <text x="1057" y="170" font-size="14" fill="#fed7aa" font-weight="700">DISCUSSION</text>
+      <text x="1057" y="203" font-size="14" fill="#fff">Anonymous Scholar #4821</text>
+      <text x="1057" y="223" font-size="14" fill="#fff">Anonymous Professional #1927</text>
+    </g>
+    <text x="600" y="320" font-size="16" fill="#14110f" font-style="italic">Routed by lived experience, not by topic.</text>
+  </g>
+</svg>
