@@ -99,9 +99,9 @@ function SearchResults() {
                 <div className="space-y-4">{results.posts.map((post) => <PostCard key={post.id} post={post} />)}</div>
               ) : (
                 <div className="rounded-2xl border border-dashed border-ink/15 px-6 py-8">
-                  <p className="font-serif text-xl">No discussions yet — ask this question.</p>
-                  <p className="mt-2 text-sm text-ink/55">Your question may help someone else find the conversation they need.</p>
-                  <Link href={`/ask?q=${encodeURIComponent(query)}`} className="mt-5 inline-flex rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white transition hover:bg-accent/90">Ask this question <span className="ml-2">↗</span></Link>
+                  <p className="font-serif text-xl">No discussions match just yet.</p>
+                  <p className="mt-2 text-sm text-ink/55">Try a broader search or explore the full community feed.</p>
+                  <Link href="/feed" className="mt-5 inline-flex rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white transition hover:bg-accent/90">Browse discussions <span className="ml-2">↗</span></Link>
                 </div>
               )}
             </section>

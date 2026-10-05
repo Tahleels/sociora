@@ -57,10 +57,7 @@ export default function FeedPage() {
             <h1 className="mt-3 font-serif text-4xl tracking-tight sm:text-5xl">A little more understood.</h1>
             <p className="mt-3 max-w-xl text-sm leading-6 text-ink/60">Questions find their way to people who have been there. Read, learn, and share at your own pace.</p>
           </div>
-          <div className="flex items-center gap-3">
-            <Link href="/search" className="rounded-full border border-ink/15 px-4 py-3 text-sm font-medium text-ink/70 transition hover:border-accent/40 hover:text-accent">Search</Link>
-            <Link href="/ask" className="rounded-full bg-ink px-5 py-3 text-sm font-medium text-white transition hover:bg-accent">Ask a question <span aria-hidden="true">↗</span></Link>
-          </div>
+          <Link href="/search" className="rounded-full bg-ink px-5 py-3 text-sm font-medium text-white transition hover:bg-accent">Search discussions <span aria-hidden="true">↗</span></Link>
         </header>
 
         <div className="mb-6 flex gap-2 overflow-x-auto pb-2" aria-label="Filter discussions by domain">
@@ -84,8 +81,12 @@ export default function FeedPage() {
           {!loading && !error && posts.length === 0 && (
             <div className="rounded-2xl border border-dashed border-ink/20 px-6 py-14 text-center">
               <h2 className="font-serif text-2xl">A quiet corner, for now.</h2>
-              <p className="mt-2 text-sm text-ink/60">No discussions in {domain} yet. Start one and find people who understand.</p>
-              <Link href="/ask" className="mt-5 inline-flex rounded-full bg-accent px-5 py-3 text-sm font-medium text-white transition hover:bg-accent/90">Ask the first question</Link>
+              <p className="mt-2 text-sm text-ink/60">No discussions in {domain} yet. Try another topic or explore existing conversations.</p>
+              {domain === "All" ? (
+                <Link href="/search" className="mt-5 inline-flex rounded-full bg-accent px-5 py-3 text-sm font-medium text-white transition hover:bg-accent/90">Search discussions</Link>
+              ) : (
+                <button type="button" onClick={() => setDomain("All")} className="mt-5 rounded-full bg-accent px-5 py-3 text-sm font-medium text-white transition hover:bg-accent/90">Browse all discussions</button>
+              )}
             </div>
           )}
         </section>
