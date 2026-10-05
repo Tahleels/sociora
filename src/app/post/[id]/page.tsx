@@ -160,8 +160,8 @@ export default function PostPage() {
                 </form>
               ) : (
                 <div className="mt-3 flex flex-wrap items-center justify-between gap-4">
-                  <p className="text-sm text-ink/60">Join the community to share your perspective anonymously.</p>
-                  <Link href="/onboarding" className="rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white transition hover:bg-accent/90">Join anonymously</Link>
+                  <p className="text-sm text-ink/60">An anonymous profile is needed to share an answer. You can browse other discussions in the meantime.</p>
+                  <Link href="/feed" className="rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white transition hover:bg-accent/90">Browse discussions</Link>
                 </div>
               )}
             </section>
